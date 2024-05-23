@@ -8,14 +8,12 @@ from django.contrib import messages
 # Create your views here.
 def index(request):
     
-    #Accedo a la BBDD a traves de los modelos
     context = {
         'nombre': 'Carlos',
         'fecha_hora': datetime.datetime.now()
     }
     
     return render(request, 'web/index.html', context)
-
 def contacto(request):
     if request.method == 'POST':
         form = ContactoForm(request.POST)
