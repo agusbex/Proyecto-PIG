@@ -1,0 +1,20 @@
+{% extends "web/base.html" %}
+{% load static %}
+
+{% block titulo %}Seguimiento de Orden{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'web/styles/seguimiento.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="contenedor-centrado">
+        <div class="fondo">
+            <h2>Seguimiento de Orden</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn" type="submit">Consultar</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
