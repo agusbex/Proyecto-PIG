@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'web/styles/base.css' %}">
+
+    {% block extra_css %}{% endblock %}
+
+</head>
+<body>
+    <header>
+        <h1>Gestor de Órdenes de Reparación</h1>
+        <nav>
+            <ul>
+             {% if user.is_authenticated %}
+                <li><a class="navbar-item" href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a class="navbar-item"  href="{% url 'login' %}">LOGOUT</a></li>
+            {% endif %}
+            </ul>
+        </nav>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+    </header>
+
+    <main class="centered">
+        {% block main %}{% endblock %}
+    </main>
+
+    <footer class="centered">
+        <p>Gestor de Ordenes de Reparación 2024 - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>
