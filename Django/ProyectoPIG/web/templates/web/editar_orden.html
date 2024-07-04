@@ -1,0 +1,19 @@
+{% extends "web/base1.html" %}
+{% load static %}
+
+{% block titulo %}Editar Orden{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'web/styles/administracion.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="contenedor-centrado">
+        <h2>Editar Orden</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Guardar cambios</button>
+        </form>
+        <a href="{% url 'administracion' %}"><button class="btn">Cancelar</button></a>
+    </div>
+{% endblock %}
