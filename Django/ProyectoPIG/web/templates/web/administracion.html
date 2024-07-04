@@ -1,4 +1,4 @@
-{% extends "web/base.html" %}
+{% extends "web/base1.html" %}
 {% load static %}
 
 {% block titulo %}Administración{% endblock %}
@@ -11,10 +11,16 @@
         <h2>Administración</h2>
         <ul>
             {% for orden in ordenes %}
-            <li>Número de Orden: {{ orden.numero_orden }}, DNI: {{ orden.dni }}, Estado: {{ orden.estado }}</li>
+            <li>
+                Número de Orden: {{ orden.numero_orden }}, DNI: {{ orden.dni }}, Estado: {{ orden.estado }}, Descripción: {{ orden.descripcion }}, Fecha de Ingreso: {{ orden.fecha_ingreso }}
+                <a href="{% url 'editar_orden' orden.id %}"><button class="btn">Editar</button></a>
+                <form action="{% url 'eliminar_orden' orden.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">Eliminar</button>
+                </form>
+            </li>
             {% endfor %}
         </ul>
-
-        <a href="{% url 'index' %}"><button class="btn">Volver</button></a>
+        <a href="{% url 'crear_orden' %}"><button class="btn">Agregar Nueva Orden</button></a>
     </div>
 {% endblock %}
