@@ -7,14 +7,13 @@
 {% endblock %}
 
 {% block main %}
-
     <div class="contenedor-centrado">
         <div class="fondo">
             <h2>Contacto</h2>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button class="btn" type="submit">Enviar</button>
+             <form method = "post"> 
+              {% csrf_token %}
+              {{ form }}
+                 <button class="btn" type="submit">Enviar</button>
             </form>
         </div>
     </div>
