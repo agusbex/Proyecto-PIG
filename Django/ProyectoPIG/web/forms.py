@@ -1,15 +1,18 @@
 from django import forms
-from django.core.exceptions import ValidationError
+from .models import Contacto
+from .models import Orden
 
-class ContactoForm(forms.Form):
-    nombre = forms.CharField(label="Nombre", max_length=100, required=True)
-    email = forms.EmailField(label="Email", required=True)
-    mensaje = forms.CharField(label="Mensaje", widget=forms.Textarea, required=True)
+class ContactoForm(forms.ModelForm):
+    class Meta:
+        model = Contacto
+        fields = ['nombre', 'email', 'mensaje']
 
 class SeguimientoForm(forms.Form):
-    numero_orden = forms.IntegerField(label="Número de Orden", required=True)
-    dni = forms.IntegerField(label="DNI", required=True)
+    numero_orden = forms.CharField(max_length=10)
+    dni = forms.CharField(max_length=8)
 
-class AdminLoginForm(forms.Form):
-    numero_admin = forms.CharField(label="Administrador", max_length=10, required=True)
-    contraseña = forms.CharField(label="Contraseña", widget=forms.PasswordInput(), required=True)
+
+class OrdenForm(forms.ModelForm):
+    class Meta:
+        model = Orden
+        fields = ['numero_orden', 'dni', 'estado', 'descripcion', 'fecha_ingreso']
