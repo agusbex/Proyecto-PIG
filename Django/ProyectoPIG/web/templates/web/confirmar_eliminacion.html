@@ -1,0 +1,19 @@
+{% extends "web/base1.html" %}
+{% load static %}
+
+{% block titulo %}Confirmar Eliminación{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'web/styles/administracion.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="contenedor-centrado">
+        <h2>Confirmar Eliminación</h2>
+        <p>¿Estás seguro de que deseas eliminar la orden número {{ orden.numero_orden }}?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn">Eliminar</button>
+        </form>
+        <a href="{% url 'administracion' %}"><button class="btn">Cancelar</button></a>
+    </div>
+{% endblock %}
